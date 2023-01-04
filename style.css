@@ -5,18 +5,32 @@
 }
 
 body {
-    width: 100vw;
     text-align: center;
     
 }
 
-h1 {
-    margin-top: 2em;
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
 }
 
-div {
-    margin-top: 5em;
+.product {
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
     height: 10em;
-    width: auto;
-    background-color: blue;
+    width: 10em;
+    background-color: rgb(160, 160, 191);
+}
+
+h4 {
+    color: greenyellow;
+}
+
+p {
+    color: blue;
 }

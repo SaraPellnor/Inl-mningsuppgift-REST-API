@@ -1,16 +1,19 @@
 // Hämtar "express-api-functionen" som sparas i "const app"
 const express = require("express")
-// const cors = require("cors")
+const cors = require("cors")
+
 const app = express()
+
 const fs = require("fs");
 const port = 3000
 
 app.use(express.json())
-// app.use(cors({ origin: ["http://localhost:3000/products"] }))
+app.use(cors())
 
 // ----- Hämtar alla product i json-filen -----
 app.get('/products', (req, res) => {
-  fs.readFile("products.jon", (err, data) => {
+
+  fs.readFile("products.json", (err, data) => {
     if (err) {
       return res.status(404).send(err)
     }
@@ -18,34 +21,32 @@ app.get('/products', (req, res) => {
     try {
       const products = JSON.parse(data)
       return res.status(200).send(products)
-      // return products
     } catch (error) {
-      
-      return res.status(404).send(error + ". <br><h1>Felkod: 404</h1>")
-      
+      return res.status(404).send(error.message)
     }
   })
 })
 
 // ----- Hämta en specifik produkt från json-filen -----
 app.get('/products/:id', (req, res) => {
+
   fs.readFile("products.json", (err, data) => {
     if (err) {
       res.status(404).send(err)
     }
-
     try {
       const products = JSON.parse(data)
       const id = req.params.id
-      for (const product of products) {
-        if (id == product.id) {
-          return res.status(200).send(product)
-        } else if (id > products.length) {
-          return res.status(404).send("Produkten finns inte...")
-        }
+      const product = products.find(product => product.id == id)
+
+      if (!product) {
+        return res.status(404).send(`Produkten med id: ${id} finns inte...`)
       }
+
+      return res.status(200).send(product)
+
     } catch (error) {
-      res.status(404).send(error + ". <br><h1>Felkod: 404</h1>")
+      res.status(404).send(error.message)
     }
   })
 })
@@ -59,6 +60,8 @@ app.post("/products", (req, res) => {
     }
     try {
       const products = JSON.parse(data)
+      const id = req.params.id
+
       let newProduct =
       {
         "description": "Matta",
@@ -66,12 +69,13 @@ app.post("/products", (req, res) => {
         "name": "ELSAFORM",
         "price": 1699
       }
-      for (const product of products) {
-        if (product.id == newProduct.id) {
-          return res.status(404).send("Produktren finns redan i listan...")
-        }
+
+      if (products.find(product => product.id == newProduct.id)) {
+        return res.status(404).send(`Produkten med id: ${newProduct.id} finns redan i listan...`)
       }
+
       products.push(newProduct)
+
       fs.writeFile("products.json", JSON.stringify(products, null, 2), function (err) {
         if (err) {
           res.status(404).send(err)
@@ -79,7 +83,7 @@ app.post("/products", (req, res) => {
       })
       return res.status(201).json(products)
     } catch (error) {
-      res.status(404).send(error + ". <br><h1>Felkod: 404</h1>")
+      res.status(404).send(error.message)
     }
 
   })
@@ -90,33 +94,33 @@ app.put('/products/:id', (req, res) => {
 
   fs.readFile("products.json", (err, data) => {
     if (err) {
+      log
       res.status(404).send(err)
     }
     try {
       const products = JSON.parse(data)
       const id = req.params.id
+      const product = products.find(product => product.id == id)
 
-      for (const product of products) {
-        if (product.id == id) {
-          const newArr = products.map(item => {
-            if (item.id == product.id) {
-              return { ...item, price: "Det är gratis idag!" }
-            }
-            return item
-          })
-
-          fs.writeFile("products.json", JSON.stringify(newArr, null, 2), function (err) {
-            if (err) {
-              res.status(404).send(err)
-            }
-          })
-          return res.status(200).json(newArr)
-        } else if (id > JSON.stringify(products.length)) {
-          return res.status(404).send("Produkten finns inte...")
-        }
+      if (!product) {
+        return res.status(404).send(`Produkten med id: ${id} finns inte...`)
       }
+
+      const newArr = products.map(item => {
+        if (item.id == product.id) {
+          return { ...item, price: "Det är gratis idag!" }
+        }
+        return item
+      })
+
+      fs.writeFile("products.json", JSON.stringify(newArr, null, 2), function (err) {
+        if (err) {
+          res.status(404).send(err)
+        }
+        return res.status(200).json(newArr)
+      })
     } catch (error) {
-      res.status(404).send(error + ". <br><h1>Felkod: 404</h1>")
+      res.status(404).send(error.message)
     }
   })
 })
@@ -131,24 +135,23 @@ app.delete('/products/:id', (req, res) => {
     try {
       const products = JSON.parse(data)
       const id = req.params.id
+      const product = products.find(product => product.id == id)
 
-      for (const product of products) {
-          if (id == product.id) {
-            const index = products.indexOf(product)
-            products.splice(index, 1)
-            fs.writeFile("products.json", JSON.stringify(products, null, 2), function (err) {
-              if (err) {
-                res.status(404).send(err)
-              }
-            })
-            res.status(200).json(products)
-            return
-        } else if (!(products.find(element => element.id == id))) {
-          return res.status(404).send("Produkten finns inte...")
-        }
+      if (!product) {
+        return res.status(404).send(`Produkten med id: ${id} finns inte...`)
       }
+
+      const index = products.indexOf(product)
+      products.splice(index, 1)
+      fs.writeFile("products.json", JSON.stringify(products, null, 2), function (err) {
+        if (err) {
+          res.status(404).send(err)
+        }
+      })
+      res.status(200).json(products)
+      return
     } catch (error) {
-      res.status(404).send(error + ". <br><h1>Felkod: 404</h1>")
+      res.status(404).send(error.message)
     }
   })
 })

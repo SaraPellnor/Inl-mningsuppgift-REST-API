@@ -4,7 +4,7 @@ GET http://localhost:3000/products
 ###
 
 // ----- Hämta en specifik produkt från json-filen
-GET http://localhost:3000/products/3
+GET http://localhost:3000/products/
 
 ###
 
@@ -19,5 +19,5 @@ PUT http://localhost:3000/products/4
 ###
 
 // ----- Ta bort en specifik produkt från json-filen
-DELETE  http://localhost:3000/products/2
+DELETE  http://localhost:3000/products/3
 
