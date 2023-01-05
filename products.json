@@ -1,38 +1,38 @@
 [
-  {
-    "description": "Bord",
-    "id": 1,
-    "name": "TRANEBO",
-    "price": 7495
-  },
-  {
-    "description": "Stol",
-    "id": 2,
-    "name": "TOSSBERG",
-    "price": 1295
-  },
-  {
-    "description": "Soffa",
-    "id": 3,
-    "name": "SÖDERHAMN",
-    "price": 7695
-  },
-  {
-    "description": "Soffbord",
-    "id": 4,
-    "name": "STOCKHOLM",
-    "price": "Det är gratis idag!"
-  },
-  {
-    "description": "Fåtölj",
-    "id": 5,
-    "name": "EKENÄSET",
-    "price": 2495
-  },
-  {
-    "description": "Matta",
-    "id": 6,
-    "name": "ELSAFORM",
-    "price": 1699
-  }
-]
+    {
+      "description": "Bord",
+      "id": 1,
+      "name": "TRANEBO",
+      "price": 7495
+    },
+    {
+      "description": "Stol",
+      "id": 2,
+      "name": "TOSSBERG",
+      "price": 1295
+    },
+    {
+      "description": "Soffa",
+      "id": 3,
+      "name": "SÖDERHAMN",
+      "price": 7695
+    },
+    {
+      "description": "Soffbord",
+      "id": 4,
+      "name": "STOCKHOLM",
+      "price": "Det är gratis idag!"
+    },
+    {
+      "description": "Fåtölj",
+      "id": 5,
+      "name": "EKENÄSET",
+      "price": 2495
+    },
+    {
+      "description": "Matta",
+      "id": 6,
+      "name": "ELSAFORM",
+      "price": 1699
+    }
+  ]
