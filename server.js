@@ -108,7 +108,7 @@ app.put('/products/:id', (req, res) => {
 
       const newArr = products.map(item => {
         if (item.id == product.id) {
-          return { ...item, price: "Det är gratis idag!" }
+          return req.body
         }
         return item
       })

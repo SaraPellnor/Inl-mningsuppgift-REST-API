@@ -9,7 +9,7 @@ const container = document.querySelector(".container")
 //   if (!(data.find(element => element.id == num))) {
 //     console.log(num);
 //     return num;
-    
+
 //   } else {
 //       generateId()
 //     }
@@ -23,33 +23,33 @@ async function getData() {
     const response = await fetch("http://localhost:3000/products")
     const data = await response.json()
     data.forEach(element => {
-      const div = document.createElement("div")
-      div.setAttribute("class", "product")
+      const product = document.createElement("product")
+      product.setAttribute("class", "product")
       const description = document.createElement("h4");
       const name = document.createElement("p");
       const price = document.createElement("p");
       const deleteBtn = document.createElement("button")
       deleteBtn.setAttribute("class", "deleteBtn")
       deleteBtn.setAttribute("method", "delete")
-      deleteBtn.addEventListener("click", () => {deleteProduct(element.id)} )
+      deleteBtn.addEventListener("click", () => { deleteProduct(element.id) })
       const changeBtn = document.createElement("button")
       changeBtn.setAttribute("class", "changeBtn")
       changeBtn.setAttribute("method", "put")
-      changeBtn.addEventListener("click", () => {changeProduct(element.id)})
-      description.innerHTML=element.description
-      name.innerHTML=element.name
-      price.innerHTML=element.price
+      changeBtn.addEventListener("click", () => { changeProduct(element, product) })
+      description.innerHTML = element.description
+      name.innerHTML = element.name
+      price.innerHTML = element.price
       deleteBtn.innerHTML = "Ta bort"
       changeBtn.innerHTML = "Ändra"
-      div.append(description, name, price, deleteBtn, changeBtn)
-      container.append(div)
+      product.append(description, name, price, deleteBtn, changeBtn)
+      container.append(product)
     });
-    
+
   } catch (error) {
     console.log(error);
   }
 }
-  
+
 getData();
 
 async function getId() {
@@ -64,20 +64,20 @@ async function getId() {
     const data = await response.json()
     console.log(data);
     container.innerHTML = ""
-    const div = document.createElement("div")
-    div.setAttribute("class", "product")
+    const product = document.createElement("product")
+    product.setAttribute("class", "product")
     // const button = document.createElement("button")
     // button.setAttribute("class", "deleteBtn")
     const description = document.createElement("h4");
-      const name = document.createElement("p");
-      const price = document.createElement("p");
-      description.innerHTML=data.description
-      name.innerHTML=data.name
-      price.innerHTML=data.price
-      // button.innerHTML = "Ta bort"
-      div.append(description, name, price, /*button*/)
-      container.append(div)
-    
+    const name = document.createElement("p");
+    const price = document.createElement("p");
+    description.innerHTML = data.description
+    name.innerHTML = data.name
+    price.innerHTML = data.price
+    // button.innerHTML = "Ta bort"
+    product.append(description, name, price, /*button*/)
+    container.append(product)
+
   } catch (error) {
     console.log(error);
   }
@@ -86,34 +86,60 @@ async function getId() {
 async function deleteProduct(id) {
   try {
     const response = await fetch(`http://localhost:3000/products/${id}`,
-    {
-      method: 'DELETE',
-      // body: JSON.stringify({
-      //   id: id,
-      //   title: 'My New Post',
-      //   content: 'This is the content of my new post'
-      // }),
-      // headers: {
-      //   'Content-Type': 'application/json'
-      // }
-    })
+      {
+        method: 'DELETE',
+        // body: JSON.stringify({
+        //   id: id,
+        //   title: 'My New Post',
+        //   content: 'This is the content of my new post'
+        // }),
+        // headers: {
+        //   'Content-Type': 'application/json'
+        // }
+      })
     const data = await response.json()
     console.log(data);
-    
+
   } catch (error) {
     console.log(error);
   }
 }
 
-async function changeProduct(id) {
+function changeProduct(element, product) {
   try {
-    const response = await fetch(`http://localhost:3000/products/${id}`)
-    const data = await response.json()
-    console.log(data);
-    
+    product.innerHTML = ""
+    const descriptionInput = document.createElement("input")
+    descriptionInput.setAttribute("class", "descriptionInput")
+    const nameInput = document.createElement("input")
+    nameInput.setAttribute("class", "nameInput")
+    const priceInput = document.createElement("input")
+    priceInput.setAttribute("class", "priceInput")
+    const submitChangeBtn = document.createElement("button")
+    submitChangeBtn.setAttribute("class", "submitChangeBtn")
+    submitChangeBtn.innerHTML = "Ändra"
+    product.append(descriptionInput, nameInput, priceInput, submitChangeBtn)
+    console.log(element.id);
+    submitChangeBtn.addEventListener("click", async () => {
+      const response = await fetch(`http://localhost:3000/products/${element.id}`,
+        {
+          method: 'PUT',
+          body: JSON.stringify(
+            {
+              "description": descriptionInput.value,
+              "id": 100,
+              "name": nameInput.value,
+              "price": priceInput.value
+            }
+          ),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+      const data = await response.json()
+      console.log(data);
+    })
   } catch (error) {
     console.log(error);
   }
 }
-  
-  
+
