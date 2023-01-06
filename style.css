@@ -1,4 +1,5 @@
 * {
+    font-family:Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,8 +13,14 @@ body {
 }
 
 .aside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2em;
+    height: 100vh;
     width: 30%;
     background-color: blue;
+
 }
 
 .container {
@@ -23,8 +30,18 @@ body {
     align-items: center;
     justify-content: center;
     background-color: red;
+    padding-top: 2em;
     width: 70%;
+    height: 100vh;
+    overflow-x: scroll;
 
+}
+
+.header4 {
+    order: -1;
+    flex-basis: 100vw;
+    padding-bottom: 3em;
+    text-align: center;
 }
 
 .product {
@@ -36,6 +53,21 @@ body {
     height: 10em;
     width: 10em;
     background-color: rgb(160, 160, 191);
+}
+
+input {
+    margin: 3em;
+    width: 7em;
+    margin: 0 1em 0 1em;
+}
+
+label {
+    margin: 1em;
+}
+
+button {
+    margin: 1em;
+    width: 7em;
 }
 
 h4 {
