@@ -9,19 +9,17 @@
     <title>REST-API</title>
 </head>
 <body>
-    <div class="aside"></div>
-
-
-    <!-- <form action="get"> -->
-        <!-- <label for="id">ID: </label>
-        <input id = "number" type="number" >
-        <button type="submit" onclick="getId()">Hämta specifik Produkt</button> -->
-    <!-- </form> -->
+    <div class="aside">
+        <h4>Skapa ny produkt</h4>
+        <label for="description">Beskrivning: </label>
+        <input class="createDesInput" type="text">
+        <label for="name">Namn: </label>
+        <input class="createNameInput" type="text">
+        <label for="price">Pris: </label>
+        <input class="createPriceInput" type="number">
+        <button class="createBtn" type="submit" onclick="createProduct()">Skapa</button>
+    </div>
     <div class="container">
-    <!-- <form action="put">
-        <label for="name">Name: </label>
-        <input defaultValue="" type="text">
-    </form> -->
     </div>
 </body>
 </html>

@@ -29,7 +29,6 @@ app.get('/products', (req, res) => {
 
 // ----- Hämta en specifik produkt från json-filen -----
 app.get('/products/:id', (req, res) => {
-
   fs.readFile("products.json", (err, data) => {
     if (err) {
       res.status(404).send(err)
@@ -53,28 +52,13 @@ app.get('/products/:id', (req, res) => {
 
 // ----- Lägg till en produkt till json-filen -----
 app.post("/products", (req, res) => {
-
   fs.readFile("products.json", (err, data) => {
     if (err) {
       res.status(404).send(err)
     }
     try {
       const products = JSON.parse(data)
-      const id = req.params.id
-
-      let newProduct =
-      {
-        "description": "Matta",
-        "id": 6,
-        "name": "ELSAFORM",
-        "price": 1699
-      }
-
-      if (products.find(product => product.id == newProduct.id)) {
-        return res.status(404).send(`Produkten med id: ${newProduct.id} finns redan i listan...`)
-      }
-
-      products.push(newProduct)
+      products.push(req.body)
 
       fs.writeFile("products.json", JSON.stringify(products, null, 2), function (err) {
         if (err) {
