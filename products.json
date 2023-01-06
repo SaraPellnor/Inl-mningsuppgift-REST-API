@@ -7,21 +7,21 @@
   },
   {
     "description": "Stol",
-    "id": 2,
+    "id": "2",
     "name": "TOSSBERG",
-    "price": 1295
+    "price": "1295"
   },
   {
-    "description": "Soffa",
-    "id": 3,
-    "name": "SÖDERHAMN",
-    "price": 7695
+    "description": "Stolen",
+    "id": 2234,
+    "name": "TOSSBERG",
+    "price": "Gratis idag!"
   },
   {
     "description": "Soffbord",
-    "id": 4,
+    "id": "4",
     "name": "STOCKHOLM",
-    "price": 3600
+    "price": "3600"
   },
   {
     "description": "Fåtölj",
@@ -30,9 +30,21 @@
     "price": 2495
   },
   {
-    "description": "Matta",
+    "description": "Så skööööön säng!!!!!",
+    "id": "346",
+    "name": "SÄNGEN",
+    "price": "38764"
+  },
+  {
+    "description": "Den helt automatiska diskmaskinen är här. Stäng dörren till köket. När du sedan öppnar är disken borta.",
+    "id": 646,
+    "name": "DISKMASKINEN",
+    "price": "112345678000"
+  },
+  {
+    "description": "Stolen",
     "id": 6,
-    "name": "ELSAFORM",
-    "price": 1699
+    "name": "TOSSBERG",
+    "price": "Det är gratis idag!"
   }
 ]

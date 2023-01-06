@@ -4,35 +4,35 @@ GET http://localhost:3000/products
 ###
 
 // ----- Hämta en specifik produkt från json-filen
-GET http://localhost:3000/products/
+GET http://localhost:3000/products/product/6
 
 ###
 
 // ----- Lägg till en produkt till json-filen
-POST http://localhost:3000/products
+POST http://localhost:3000/products/post/
 Content-Type: application/json
 
 {
     "description": "Matta",
-    "id": 66,
+    "id": 6,
     "name": "ELSAFORM",
     "price": 1699
 }
 ###
 
 // ----- Ändra en specifik produkt i json-filen
-PUT http://localhost:3000/products/3
+PUT http://localhost:3000/products/put/6
 Content-Type: application/json
 
 {
-    "description": "xfhxfh",
-    "id": 1,
-    "name": "dhdfh",
-    "price": "dzgdfh"
+    "description": "Stolen",
+    "id": 6,
+    "name": "TOSSBERG",
+    "price": "Det är gratis idag!"
 }
 
 ###
 
 // ----- Ta bort en specifik produkt från json-filen
-DELETE  http://localhost:3000/products/3
+DELETE  http://localhost:3000/products/delete/6
 

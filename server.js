@@ -28,7 +28,7 @@ app.get('/products', (req, res) => {
 })
 
 // ----- Hämta en specifik produkt från json-filen -----
-app.get('/products/:id', (req, res) => {
+app.get('/products/product/:id', (req, res) => {
   fs.readFile("products.json", (err, data) => {
     if (err) {
       res.status(404).send(err)
@@ -51,7 +51,7 @@ app.get('/products/:id', (req, res) => {
 })
 
 // ----- Lägg till en produkt till json-filen -----
-app.post("/products", (req, res) => {
+app.post("/products/post", (req, res) => {
   fs.readFile("products.json", (err, data) => {
     if (err) {
       res.status(404).send(err)
@@ -74,7 +74,7 @@ app.post("/products", (req, res) => {
 })
 
 // ----- Ändra en specifik produkt i json-filen -----
-app.put('/products/:id', (req, res) => {
+app.put('/products/put/:id', (req, res) => {
 
   fs.readFile("products.json", (err, data) => {
     if (err) {
@@ -110,7 +110,7 @@ app.put('/products/:id', (req, res) => {
 })
 
 // ----- Ta bort en specifik produkt från json-filen
-app.delete('/products/:id', (req, res) => {
+app.delete('/products/delete/:id', (req, res) => {
 
   fs.readFile("products.json", (err, data) => {
     if (err) {
