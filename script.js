@@ -120,6 +120,8 @@ async function createProduct() {
 // ----- PUT -----
 function changeProduct(element, product) {
   try {
+    console.log(element);
+    container.innerHTML = ""
     product.innerHTML = ""
 
     const description = document.createElement("p")
@@ -162,7 +164,7 @@ function changeProduct(element, product) {
     returnBtn.innerHTML = "tillbaka"
 
     product.append(description, descriptionInput, id, idInput, name, nameInput, price, priceInput, submitChangeBtn, returnBtn)
-
+    container.append(product)
     submitChangeBtn.addEventListener("click", async () => {
       const response = await fetch(`http://localhost:3000/products/put/${element.id}`,
         {
@@ -179,7 +181,8 @@ function changeProduct(element, product) {
             'Content-Type': 'application/json'
           }
         })
-      await response.json()
+      const data = await response.json()
+      console.log(data);
     })
   } catch (error) {
     console.log(error);
@@ -193,7 +196,8 @@ async function deleteProduct(id) {
       {
         method: 'DELETE',
       })
-    await response.json()
+      const data = await response.json()
+      console.log(data);
   } catch (error) {
     console.log(error);
   }

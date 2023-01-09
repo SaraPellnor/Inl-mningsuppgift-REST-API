@@ -1,6 +1,6 @@
 [
   {
-    "description": "Bord",
+    "description": "Bordet som tar alla middagar, både små och stora.",
     "id": "1234",
     "name": "TRANEBO",
     "price": "7495"
@@ -13,9 +13,9 @@
   },
   {
     "description": "Stolen",
-    "id": 2234,
+    "id": "2234",
     "name": "TOSSBERG",
-    "price": "Gratis idag!"
+    "price": "4500"
   },
   {
     "description": "Soffbord",
@@ -37,14 +37,14 @@
   },
   {
     "description": "Den helt automatiska diskmaskinen är här. Stäng dörren till köket. När du sedan öppnar är disken borta.",
-    "id": 646,
+    "id": "646",
     "name": "DISKMASKINEN",
-    "price": "112345678000"
+    "price": "11000"
   },
   {
-    "description": "Stolen",
-    "id": 6,
+    "description": "Stolen som gör underverk för din rygg",
+    "id": "6",
     "name": "TOSSBERG",
-    "price": "Det är gratis idag!"
+    "price": "1500"
   }
 ]

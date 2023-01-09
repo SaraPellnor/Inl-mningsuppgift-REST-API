@@ -5,6 +5,7 @@ const cors = require("cors")
 const app = express()
 
 const fs = require("fs");
+const { log } = require("console");
 const port = 3000
 
 app.use(express.json())
@@ -69,7 +70,6 @@ app.post("/products/post", (req, res) => {
     } catch (error) {
       res.status(404).send(error.message)
     }
-
   })
 })
 
@@ -144,4 +144,3 @@ app.delete('/products/delete/:id', (req, res) => {
 app.listen(port, () => {
   console.log("lyssnar på port 3000...")
 })
-
